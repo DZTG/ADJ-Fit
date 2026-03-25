@@ -59,7 +59,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-lg md:text-xl text-[#a3a3a3] max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
         >
           Online fitness coaching built around your goals, your schedule, and
           your life. No cookie-cutter plans. No shortcuts. Real results.
