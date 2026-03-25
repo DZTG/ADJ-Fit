@@ -151,11 +151,6 @@ export default function Testimonials() {
               </div>
             ))}
           </div>
-          <div className="px-8 py-5 text-center">
-            <p className="text-[#a3a3a3] text-sm">
-              Placeholder before/after layout — swap with real client photos when ready.
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>
