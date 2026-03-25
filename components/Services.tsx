@@ -18,8 +18,8 @@ const services = [
     icon: "📋",
     title: "Training Program Only",
     description:
-      "A structured 12-week self-guided program built on the same principles Alex uses with his 1:1 clients. App access included so you can log every session and track your progress anywhere.",
-    features: ["12-week program", "App access", "Video demonstrations", "Progress tracking"],
+      "A structured 12-week self-guided program built on the same principles Alex uses with his 1:1 clients. Follow along at your own pace with video demonstrations and a clear weekly structure.",
+    features: ["12-week program", "Video demonstrations", "Weekly structure", "Progress tracking"],
     cta: "Apply Now",
     href: "#apply",
     featured: false,
