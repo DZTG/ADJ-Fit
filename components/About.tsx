@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
@@ -36,7 +35,7 @@ function FadeInWhenVisible({
 
 export default function About() {
   return (
-    <section id="about" className="py-28 px-6">
+    <section id="about" className="py-28 px-6 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Photo */}
@@ -59,18 +58,15 @@ export default function About() {
           {/* Text */}
           <div className="flex flex-col gap-6">
             <FadeInWhenVisible delay={0.1}>
-              <p className="text-[#c9a84c] text-sm font-medium tracking-[0.2em] uppercase">
+              <p className="text-[#c9a84c] text-sm font-medium tracking-[0.2em] uppercase mb-3">
                 About Alex
               </p>
-            </FadeInWhenVisible>
-
-            <FadeInWhenVisible delay={0.2}>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
                 Coaching That Actually Works
               </h2>
             </FadeInWhenVisible>
 
-            <FadeInWhenVisible delay={0.3}>
+            <FadeInWhenVisible delay={0.2}>
               <p className="text-[#a3a3a3] leading-relaxed text-base md:text-lg">
                 Alex Dea Jue isn&apos;t your typical online coach. With five years of
                 experience helping real people make real changes, Alex has built
@@ -79,7 +75,7 @@ export default function About() {
               </p>
             </FadeInWhenVisible>
 
-            <FadeInWhenVisible delay={0.4}>
+            <FadeInWhenVisible delay={0.3}>
               <p className="text-[#a3a3a3] leading-relaxed text-base md:text-lg">
                 Every plan is built from scratch around you: your schedule, your
                 lifestyle, your starting point. No cookie-cutter templates, no
@@ -89,7 +85,7 @@ export default function About() {
               </p>
             </FadeInWhenVisible>
 
-            <FadeInWhenVisible delay={0.5}>
+            <FadeInWhenVisible delay={0.4}>
               <p className="text-[#a3a3a3] leading-relaxed text-base md:text-lg">
                 Whether you&apos;re looking to lose fat, build muscle, or simply feel
                 better in your own body — Alex meets you exactly where you are
@@ -98,7 +94,7 @@ export default function About() {
             </FadeInWhenVisible>
 
             {/* Stats */}
-            <FadeInWhenVisible delay={0.6}>
+            <FadeInWhenVisible delay={0.5}>
               <div className="grid grid-cols-3 gap-4 mt-4 pt-6 border-t border-[#1f1f1f]">
                 {stats.map((stat) => (
                   <div key={stat.label} className="text-center">

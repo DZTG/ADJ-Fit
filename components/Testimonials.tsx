@@ -84,7 +84,7 @@ export default function Testimonials() {
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
 
   return (
-    <section id="results" className="py-28 px-6">
+    <section id="results" className="py-28 px-6 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={headerRef}>

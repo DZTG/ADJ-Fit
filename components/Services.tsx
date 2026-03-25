@@ -54,7 +54,7 @@ function ServiceCard({
       transition={{ duration: 0.6, delay: index * 0.12, ease: "easeOut" }}
       className={`relative flex flex-col rounded-2xl p-8 border transition-all duration-300 group hover:-translate-y-1 ${
         service.featured
-          ? "bg-[#111111] border-[#c9a84c]/40 hover:border-[#c9a84c]/70"
+          ? "bg-[#111111] border-[#c9a84c]/40 hover:border-[#c9a84c]/70 mt-5"
           : "bg-[#0d0d0d] border-[#1f1f1f] hover:border-[#2e2e2e]"
       }`}
     >
@@ -119,7 +119,7 @@ export default function Services() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="services" className="py-28 px-6 bg-[#050505]">
+    <section id="services" className="py-28 px-6 bg-[#050505] scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={ref}>

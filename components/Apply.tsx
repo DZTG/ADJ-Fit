@@ -55,10 +55,13 @@ export default function Apply() {
 
   const inputClass =
     "w-full bg-[#0d0d0d] border border-[#1f1f1f] rounded-xl px-4 py-3 text-white text-sm placeholder:text-[#555] focus:outline-none focus:border-[#c9a84c]/60 transition-colors duration-200";
+  const selectClass =
+    inputClass +
+    " cursor-pointer appearance-none bg-[image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")] bg-no-repeat bg-[position:right_1rem_center] pr-10";
   const labelClass = "block text-sm font-medium text-[#a3a3a3] mb-2";
 
   return (
-    <section id="apply" className="py-28 px-6 bg-[#050505]">
+    <section id="apply" className="py-28 px-6 bg-[#050505] scroll-mt-20">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-14" ref={headerRef}>
@@ -147,7 +150,7 @@ export default function Apply() {
                   id="goal"
                   name="goal"
                   required
-                  className={inputClass + " cursor-pointer"}
+                  className={selectClass}
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -169,7 +172,7 @@ export default function Apply() {
                   id="experience"
                   name="experience"
                   required
-                  className={inputClass + " cursor-pointer"}
+                  className={selectClass}
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -191,7 +194,7 @@ export default function Apply() {
                   id="timeline"
                   name="timeline"
                   required
-                  className={inputClass + " cursor-pointer"}
+                  className={selectClass}
                   defaultValue=""
                 >
                   <option value="" disabled>
