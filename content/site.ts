@@ -103,7 +103,7 @@ export const testimonials = [
 
 export const featuredTransformation = {
   label: "Featured Transformation",
-  name: "Jordan",
+  name: "Kenny Campbell",
   summary:
-    "One of Alex's client transformations, highlighting the kind of visible change that comes from structured training, sustainable nutrition, and consistent accountability.",
+    "Kenny lost 20 lb for his wedding and built enough confidence and momentum to get scouted by a modeling agency, showing what can happen when the right plan finally clicks.",
 } as const;

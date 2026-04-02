@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-import jordanTransformation from "@/public/client/jordan-transformation.png";
+import kennyTransformation from "@/public/client/kenny-transformation.png";
 import { featuredTransformation, testimonials } from "@/content/site";
 
 function StarRating({ count }: { count: number }) {
@@ -149,8 +149,8 @@ export default function Testimonials() {
             <div className="relative bg-[#111111]">
               <div className="relative aspect-[714/658]">
                 <Image
-                  src={jordanTransformation}
-                  alt="Jordan client transformation before and after"
+                  src={kennyTransformation}
+                  alt="Kenny Campbell client transformation before and after"
                   fill
                   sizes="(min-width: 768px) 48vw, 100vw"
                   className="object-cover"
