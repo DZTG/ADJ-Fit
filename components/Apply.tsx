@@ -2,7 +2,6 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
-import { contactEmail } from "@/content/site";
 
 const goals = [
   "Fat Loss",
@@ -33,38 +32,41 @@ export default function Apply() {
   const shouldReduceMotion = useReducedMotion();
 
   const [submitting, setSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitting(true);
-    setStatusMessage("");
+    setErrorMessage("");
 
     const form = event.currentTarget;
     const data = new FormData(form);
 
-    const lines = [
-      `Name: ${String(data.get("name") ?? "")}`,
-      `Email: ${String(data.get("email") ?? "")}`,
-      `Primary Goal: ${String(data.get("goal") ?? "")}`,
-      `Experience Level: ${String(data.get("experience") ?? "")}`,
-      `Timeline: ${String(data.get("timeline") ?? "")}`,
-      `What's holding you back right now?: ${String(data.get("blocker") ?? "")}`,
-      `Prepared to invest in health?: ${String(data.get("investment") ?? "")}`,
-      "",
-      "Additional Notes:",
-      String(data.get("message") ?? ""),
-    ];
+    try {
+      const response = await fetch("https://formspree.io/f/xaqlkwve", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
 
-    const name = String(data.get("name") ?? "Website Application");
-    const subject = encodeURIComponent(`Coaching application from ${name}`);
-    const body = encodeURIComponent(lines.join("\n"));
-
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    setStatusMessage(
-      `Your email app should open with your application pre-filled. If it doesn't, send your answers to ${contactEmail}.`
-    );
-    setSubmitting(false);
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        const json = await response.json().catch(() => ({}));
+        setErrorMessage(
+          (json as { error?: string }).error ??
+            "Something went wrong. Please try again or email Alex directly."
+        );
+      }
+    } catch {
+      setErrorMessage(
+        "Could not send your application. Check your connection and try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const inputClass =
@@ -124,9 +126,8 @@ export default function Apply() {
             }}
             className="mx-auto mt-4 max-w-lg leading-relaxed text-[#a3a3a3]"
           >
-            Spots are limited. Fill out the application below and your answers
-            will open in a pre-filled email to Alex while the full online form
-            is being finalized.
+            Spots are limited. Fill out the application below and Alex will be
+            in touch within 24–48 hours.
           </motion.p>
         </div>
 
@@ -143,19 +144,15 @@ export default function Apply() {
           transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: "easeOut" }}
           className="rounded-2xl border border-[#1f1f1f] bg-[#0d0d0d] p-8 md:p-10"
         >
-          <div className="mb-6 rounded-2xl border border-[#c9a84c]/20 bg-[#c9a84c]/8 px-5 py-4 text-sm text-[#f5f5f5]">
-            For now, submitting this application opens your default email app
-            with all of your answers filled in. You can also reach Alex
-            directly at{" "}
-            <a
-              href={`mailto:${contactEmail}`}
-              className="text-[#c9a84c] underline underline-offset-4"
-            >
-              {contactEmail}
-            </a>
-            .
-          </div>
-
+          {submitted ? (
+            <div className="flex flex-col items-center gap-4 py-12 text-center">
+              <p className="text-2xl font-bold text-white">Application Received</p>
+              <p className="max-w-sm leading-relaxed text-[#a3a3a3]">
+                Thanks for applying! Alex will review your application and
+                reach out within 24–48 hours.
+              </p>
+            </div>
+          ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
@@ -301,13 +298,13 @@ export default function Apply() {
               />
             </div>
 
-            {statusMessage ? (
+            {errorMessage ? (
               <p
-                role="status"
+                role="alert"
                 aria-live="polite"
-                className="rounded-2xl border border-[#1f1f1f] bg-[#111111] px-4 py-3 text-sm text-[#d4d4d4]"
+                className="rounded-2xl border border-red-900/40 bg-red-950/30 px-4 py-3 text-sm text-red-300"
               >
-                {statusMessage}
+                {errorMessage}
               </p>
             ) : null}
 
@@ -316,7 +313,7 @@ export default function Apply() {
               disabled={submitting}
               className="w-full rounded-full bg-[#c9a84c] py-4 text-sm font-semibold tracking-wide text-[#0a0a0a] transition-all duration-200 hover:scale-[1.01] hover:bg-[#e4c06e] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {submitting ? "Preparing..." : "Open Email Application"}
+              {submitting ? "Submitting..." : "Submit Application"}
             </button>
 
             <p className="text-center text-xs text-[#555]">
@@ -324,6 +321,7 @@ export default function Apply() {
               regarding your application. No spam, ever.
             </p>
           </form>
+          )}
         </motion.div>
       </div>
     </section>
